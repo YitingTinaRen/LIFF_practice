@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>請假系統</title>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script>
+        // liff.init({
+        //     liffId: '2001808224-L3wEzNpG', // Use own liffId
+        //     withLoginOnExternalBrowser: true, // Enable automatic login process
+        // }).then(() => {
+        //     // Start to use liff's api
+        // });
+        const url = "https://script.google.com/macros/s/AKfycby5Iban4SjoMqy41-EZWySwzOSD-RsTNtlBr8SUIuubv3oQR06aHfPkOtlf-vDzXa7y/exec";
+        const liff_id = '2001808224-L3wEzNpG';
+        //==========================LIFF API初始化================================
+        $(document).ready(function () {
+            liff.init({
+                liffId: ligg_id
+            });
+        });
+        //==========================LIFF API初始化================================
+
+        function liff_closeWindow() {
+            liff.closeWindow();
+        }
+
+        function makeApiRequest() {
+            var payload = {
+                "events": [{
+                    "mode": "active",
+                    "message": {
+                        "type": "text",
+                        "quoteToken": "h6XlPf44pNZxvgpXy7WGdK5j3uN4Tx9CWVQFX6nRJ78LVA__Ipb0sTsTTD4rqIzTkv6wW2SIOY7rZmJ3MkIgnFIz9Qrwup0mispBqrNIekE0-eMSlpSAanlk2FnBXEAA0svfUxPhjy-9rm1QtRc3OQ",
+                        "text": "+1",
+                        "id": 482901429720187026
+                    },
+                    "type": "message",
+                    "timestamp": 1700662985914,
+                    "deliveryContext": {
+                        "isRedelivery": false
+                    },
+                    "webhookEventId": "01HFVPKHJZNTSV52PFKRET3M2C",
+                    "replyToken": "2b28eb0732f74b29a7f9108ac6592764",
+                    "source": {
+                        "userId": "U0362136ac1e8ecdb43bbd6161a2c63fd",
+                        "type": "user"
+                    }
+                }],
+                "destination": "U955a4c8d89ad350d5b57401da2bcefe3"
+            };
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(payload),
+                success: function (response) {
+                    console.log("API Request successful:", response);
+                },
+                error: function (error) {
+                    console.error("API Request failed:", error);
+                }
+            });
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        button {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (min-width: 600px) {
+            button {
+                width: 50%;
+            }
+        }
+    </style>
+    <title>Button Page</title>
+</head>
+
+<body>
+    <button onclick="makeApiRequest()">請假</button>
+    <button>換班</button>
+    <button>加班</button>
+    <button>約會</button>
+    <button>數據</button>
+    <button onclick="liff_closeWindow()">關閉新視窗</button>
+</body>
+
+</html>
